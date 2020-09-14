@@ -1,9 +1,8 @@
-import 'dart:ui';
-
 import 'package:flame/game/base_game.dart';
+import 'package:flame/vector2.dart';
 import 'package:test/test.dart';
 
-import 'package:flame/components/component.dart';
+import 'package:flame/components/position_component.dart';
 import 'package:flame/components/mixins/resizable.dart';
 
 class MyComponent extends PositionComponent with Resizable {
@@ -14,14 +13,11 @@ class MyComponent extends PositionComponent with Resizable {
 
   @override
   Iterable<Resizable> resizableChildren() => myChildren;
-
-  @override
-  void render(Canvas c) {}
 }
 
 class MyGame extends BaseGame {}
 
-Size size = const Size(1.0, 1.0);
+Vector2 size = Vector2(1.0, 1.0);
 
 void main() {
   group('resizable test', () {

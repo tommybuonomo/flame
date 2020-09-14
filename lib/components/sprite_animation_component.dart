@@ -1,14 +1,16 @@
 import 'dart:ui';
 
-import 'component.dart';
-import '../animation.dart';
+import 'package:flutter/foundation.dart';
 
-class AnimationComponent extends PositionComponent {
-  Animation animation;
+import '../sprite_animation.dart';
+import 'position_component.dart';
+
+class SpriteAnimationComponent extends PositionComponent {
+  SpriteAnimation animation;
   Paint overridePaint;
   bool destroyOnFinish = false;
 
-  AnimationComponent(
+  SpriteAnimationComponent(
     double width,
     double height,
     this.animation, {
@@ -18,9 +20,9 @@ class AnimationComponent extends PositionComponent {
     this.height = height;
   }
 
-  AnimationComponent.empty();
+  SpriteAnimationComponent.empty();
 
-  AnimationComponent.sequenced(
+  SpriteAnimationComponent.sequenced(
     double width,
     double height,
     String imagePath,
@@ -36,7 +38,7 @@ class AnimationComponent extends PositionComponent {
   }) {
     this.width = width;
     this.height = height;
-    animation = Animation.sequenced(
+    animation = SpriteAnimation.sequenced(
       imagePath,
       amount,
       amountPerRow: amountPerRow,
@@ -55,9 +57,10 @@ class AnimationComponent extends PositionComponent {
   @override
   bool destroy() => destroyOnFinish && animation.isLastFrame;
 
+  @mustCallSuper
   @override
   void render(Canvas canvas) {
-    prepareCanvas(canvas);
+    super.render(canvas);
     animation.getSprite().render(
           canvas,
           width: width,

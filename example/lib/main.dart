@@ -3,7 +3,7 @@ import 'dart:ui';
 
 import 'package:flame/anchor.dart';
 import 'package:flame/gestures.dart';
-import 'package:flame/components/component.dart';
+import 'package:flame/components/position_component.dart';
 import 'package:flame/components/mixins/has_game_ref.dart';
 import 'package:flame/game.dart';
 import 'package:flame/palette.dart';
@@ -23,14 +23,17 @@ class Palette {
 
 class Square extends PositionComponent with HasGameRef<MyGame> {
   static const SPEED = 0.25;
+  static Paint white = Palette.white.paint;
+  static Paint red = Palette.red.paint;
+  static Paint blue = Palette.blue.paint;
 
   @override
   void render(Canvas c) {
-    prepareCanvas(c);
+    super.render(c);
 
-    c.drawRect(Rect.fromLTWH(0, 0, width, height), Palette.white.paint);
-    c.drawRect(const Rect.fromLTWH(0, 0, 3, 3), Palette.red.paint);
-    c.drawRect(Rect.fromLTWH(width / 2, height / 2, 3, 3), Palette.blue.paint);
+    c.drawRect(toOriginRect(), white);
+    c.drawRect(const Rect.fromLTWH(0, 0, 3, 3), red);
+    c.drawRect(Rect.fromLTWH(width / 2, height / 2, 3, 3), blue);
   }
 
   @override

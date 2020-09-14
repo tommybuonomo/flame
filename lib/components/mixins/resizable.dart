@@ -1,4 +1,4 @@
-import 'dart:ui';
+import 'package:vector_math/vector_math_64.dart';
 
 /// Useful mixin to add to your components if you want to hold a reference to the current screen size.
 ///
@@ -6,10 +6,10 @@ import 'dart:ui';
 /// Also, it updates its [children], if any.
 class Resizable {
   /// This is the current updated screen size.
-  Size size;
+  Vector2 size;
 
   /// Implementation provided by this mixin to the resize hook.
-  void resize(Size size) {
+  void resize(Vector2 size) {
     this.size = size;
     resizableChildren().where((e) => e != null).forEach((e) => e.resize(size));
   }

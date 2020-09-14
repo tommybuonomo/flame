@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flame/game.dart';
-import 'package:flame/components/component.dart';
+import 'package:flame/components/position_component.dart';
 import 'package:flame/components/mixins/tapable.dart';
 
 void main() {
@@ -29,7 +29,8 @@ class TapableSquare extends PositionComponent with Tapable {
 
   @override
   void render(Canvas canvas) {
-    canvas.drawRect(toRect(), _beenPressed ? _grey : _white);
+    super.render(canvas);
+    canvas.drawRect(toOriginRect(), _beenPressed ? _grey : _white);
   }
 
   @override

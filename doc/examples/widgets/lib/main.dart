@@ -109,7 +109,8 @@ void main() async {
           child: SpriteWidget(
             sprite: shieldSprite,
             anchor: parseAnchor(
-                ctx.listProperty('anchor', 'Anchor.center', anchorOptions)),
+              ctx.listProperty('anchor', 'Anchor.center', anchorOptions),
+            ),
           ),
         ),
       );
@@ -122,18 +123,23 @@ void main() async {
     columns: 4,
     rows: 1,
   );
-  final _animation = _animationSpriteSheet.createAnimation(0,
-      stepTime: 0.2, to: 3, loop: true);
+  final _animation = _animationSpriteSheet.createAnimation(
+    0,
+    stepTime: 0.2,
+    to: 3,
+    loop: true,
+  );
   dashbook.storiesOf('AnimationWidget').decorator(CenterDecorator()).add(
         'default',
         (ctx) => Container(
           width: ctx.numberProperty('container width', 400),
           height: ctx.numberProperty('container height', 200),
-          child: AnimationWidget(
+          child: SpriteAnimationWidget(
             animation: _animation,
             playing: ctx.boolProperty('playing', true),
             anchor: parseAnchor(
-                ctx.listProperty('anchor', 'Anchor.center', anchorOptions)),
+              ctx.listProperty('anchor', 'Anchor.center', anchorOptions),
+            ),
           ),
         ),
       );

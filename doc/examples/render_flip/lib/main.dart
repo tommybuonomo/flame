@@ -1,18 +1,19 @@
-import 'package:flame/animation.dart' as flame_animation;
-import 'package:flame/components/animation_component.dart';
+import 'package:flame/sprite_animation.dart';
+import 'package:flame/components/sprite_animation_component.dart';
 import 'package:flame/flame.dart';
 import 'package:flame/game.dart';
+import 'package:flame/vector2.dart';
 import 'package:flutter/material.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  final Size size = await Flame.util.initialDimensions();
+  final Vector2 size = await Flame.util.initialDimensions();
   final game = MyGame(size);
   runApp(game.widget);
 }
 
 class MyGame extends BaseGame {
-  final animation = flame_animation.Animation.sequenced(
+  final animation = SpriteAnimation.sequenced(
     'chopper.png',
     4,
     textureWidth: 48,
@@ -20,13 +21,13 @@ class MyGame extends BaseGame {
     stepTime: 0.15,
   );
 
-  AnimationComponent buildAnimation() {
-    final ac = AnimationComponent(100, 100, animation);
-    ac.x = size.width / 2 - ac.width / 2;
+  SpriteAnimationComponent buildAnimation() {
+    final ac = SpriteAnimationComponent(100, 100, animation);
+    ac.x = size.x / 2 - ac.width / 2;
     return ac;
   }
 
-  MyGame(Size screenSize) {
+  MyGame(Vector2 screenSize) {
     size = screenSize;
 
     final regular = buildAnimation();

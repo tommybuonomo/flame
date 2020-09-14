@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## 1.0.0
+ - Move all box2d related code and examples to the flame_box2d repo
+ - Rename Animation to SpriteAnimation
+ - Unify all the possible tuples to Vector2
+
 ## 0.26.0
  - Improving Flame image auto cache
  - Fix bug in the Box2DGame's add and addLater method , when the Component extends BodyComponent and mixin HasGameRef or other mixins ,the mixins will not be set correctly

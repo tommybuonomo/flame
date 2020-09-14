@@ -1,13 +1,14 @@
 import 'dart:async';
-import 'dart:ui';
 import 'dart:math' as math;
-import 'package:flutter/widgets.dart' as widgets;
+import 'dart:ui';
 
-import 'component.dart';
-import 'mixins/resizable.dart';
-import '../text_config.dart';
+import 'package:flutter/widgets.dart' as widgets;
+import 'package:vector_math/vector_math_64.dart';
+
 import '../palette.dart';
-import '../position.dart';
+import '../text_config.dart';
+import 'mixins/resizable.dart';
+import 'position_component.dart';
 
 class TextBoxConfig {
   final double maxWidth;
@@ -27,7 +28,7 @@ class TextBoxComponent extends PositionComponent with Resizable {
   static final Paint _imagePaint = BasicPalette.white.paint
     ..filterQuality = FilterQuality.high;
 
-  Position p = Position.empty();
+  Vector2 p = Vector2.zero();
 
   String _text;
   TextConfig _config;
@@ -141,14 +142,13 @@ class TextBoxComponent extends PositionComponent with Resizable {
     if (_cache == null) {
       return;
     }
-    prepareCanvas(c);
+    super.render(c);
     c.drawImage(_cache, Offset.zero, _imagePaint);
   }
 
   Future<Image> _redrawCache() {
     final PictureRecorder recorder = PictureRecorder();
-    final Canvas c = Canvas(
-        recorder, Rect.fromLTWH(0.0, 0.0, width.toDouble(), height.toDouble()));
+    final Canvas c = Canvas(recorder, toOriginRect());
     _fullRender(c);
     return recorder.endRecording().toImage(width.toInt(), height.toInt());
   }

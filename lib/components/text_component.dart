@@ -1,9 +1,10 @@
 import 'dart:ui';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/painting.dart';
 
-import 'component.dart';
 import '../text_config.dart';
+import 'position_component.dart';
 
 class TextComponent extends PositionComponent {
   String _text;
@@ -38,9 +39,10 @@ class TextComponent extends PositionComponent {
     height = _tp.height;
   }
 
+  @mustCallSuper
   @override
   void render(Canvas c) {
-    prepareCanvas(c);
+    super.render(c);
     _tp.paint(c, Offset.zero);
   }
 }
