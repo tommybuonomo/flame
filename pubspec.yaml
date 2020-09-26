@@ -9,7 +9,10 @@ dependencies:
   audioplayers: ^0.15.1
   ordered_set: ^2.0.0
   path_provider: ^1.6.0
-  box2d_flame: ^0.4.6
+  box2d_flame:
+    git:
+      url: git@github.com:tommybuonomo/box2d.dart.git
+      ref: release-mode-fix-master
   synchronized: ^2.1.0
   convert: ^2.0.1
   flare_flutter: ^2.0.1
